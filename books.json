@@ -1,0 +1,29 @@
+[
+  {
+    "ID": 2,
+    "Title": "aa",
+    "Author": "aaaa",
+    "PublishDate": "aaa",
+    "InDate": "aaa",
+    "IsBorrowed": true,
+    "Borrower": "HakimYu"
+  },
+  {
+    "ID": 3,
+    "Title": "aaa",
+    "Author": "aaa",
+    "PublishDate": "aaaa",
+    "InDate": "aaa",
+    "IsBorrowed": false,
+    "Borrower": ""
+  },
+  {
+    "ID": 4,
+    "Title": "aaaa",
+    "Author": "bbbb",
+    "PublishDate": "bbbb",
+    "InDate": "bbbb",
+    "IsBorrowed": false,
+    "Borrower": "aa"
+  }
+]

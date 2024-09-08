@@ -1,0 +1,5 @@
+{
+    "editor.codeActionsOnSave": {
+    },
+    "go.formatTool": "gofmt"
+}
