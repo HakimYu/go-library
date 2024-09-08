@@ -23,7 +23,7 @@ type Book struct {
 }
 
 var books []Book
-var token string
+var token string = ""
 var currentUsername string
 
 var mySigningKey = []byte("HakimYu") // 用于签名的密钥
@@ -46,11 +46,19 @@ func checkToken(tokenString string) (string, error) {
 		return mySigningKey, nil
 	})
 
-	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		return claims["username"].(string), nil
-	} else {
+	// 检查解析是否出错
+	if err != nil {
 		return "", err
 	}
+
+	// 检查 token 是否有效且不为 nil
+	if token != nil && token.Valid {
+		if claims, ok := token.Claims.(jwt.MapClaims); ok {
+			return claims["username"].(string), nil
+		}
+	}
+
+	return "", fmt.Errorf("无效的 token")
 }
 
 // 用户结构体
@@ -122,7 +130,7 @@ func addBook() {
 	_,err := checkToken(token)
 
 	if err!= nil {
-		fmt.Println("请登录！", err)
+		fmt.Println("请登录！")
 		login()
 		return
 	}
@@ -169,7 +177,7 @@ func deleteBook() {
 	_,err := checkToken(token)
 
 	if err!= nil {
-		fmt.Println("请登录！", err)
+		fmt.Println("请登录！")
 		login()
 		return
 	}
@@ -211,7 +219,7 @@ func borrowBook() {
 	_,err := checkToken(token)
 
 	if err!= nil {
-		fmt.Println("请登录！", err)
+		fmt.Println("请登录！")
 		login()
 		return
 	}
